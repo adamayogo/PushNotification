@@ -6,6 +6,8 @@ The Telerik Push Notifications is based on the [Phonegap Push Plugin](https://gi
 
 It contains some bug fixes and new features and is easily integrated with [Telerik Backend Services](http://www.telerik.com/backend-services).
 
+This fork was made to allow a custom notification icon (Android only).
+
 ## Using with Telerik Backend Services
 
 In order to use the plugin with Telerik Backend Services, which supports iOS, Android, WP8 and Windows 8, take a look at the official documentation:
