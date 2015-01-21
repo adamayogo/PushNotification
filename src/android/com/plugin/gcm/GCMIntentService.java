@@ -118,10 +118,12 @@ public class GCMIntentService extends GCMBaseIntentService {
       } catch (NumberFormatException ignored) {}
     }
 
+    int smallIconId = getIconValue(this.getPackageName(), "notification");
+
     NotificationCompat.Builder mBuilder =
         new NotificationCompat.Builder(context)
             .setDefaults(defaults)
-            .setSmallIcon(R.drawable.notification)
+            .setSmallIcon(smallIconId)
             .setWhen(System.currentTimeMillis())
             .setContentTitle(extras.getString("title"))
             .setTicker(extras.getString("title"))
@@ -142,6 +144,19 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 
     mNotificationManager.notify(appName, notId, mBuilder.build());
+  }
+
+  private int getIconValue (String className, String iconName)
+  {
+    int icon = 0;
+
+    try {
+      Class<?> klass  = Class.forName(className + ".R$drawable");
+
+      icon = (Integer) klass.getDeclaredField(iconName).get(Integer.class);
+    } catch (Exception e) {}
+
+    return icon;
   }
 
   private static String getAppName(Context context)
